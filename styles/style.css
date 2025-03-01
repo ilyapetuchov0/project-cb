@@ -1,0 +1,425 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@900&display=swap');
+
+@font-face {
+    font-family: 'Red October';
+    src: url('../fonts/RedOctober.woff2') format('woff2');
+}
+
+body {
+    font-family: Geologica, serif;
+    background-color: #000;
+    color: #eee;
+    margin: 0;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+    color: #eee;
+}
+
+.header {
+    width: 1140px;
+    max-width: 80%;
+    margin: auto;
+    height: 50px;
+    display: flex;
+    position: relative;
+    z-index: 100;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.inflation {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.inflation-content {
+    display: flex;
+    align-items: center;
+}
+
+.inflation-content__img {
+    height: 25px;
+}
+
+.inflation-text, .key-rate, .inflation-content__text {
+    font-size: 25px;
+}
+
+.bad {
+    color: red;
+}
+
+.good {
+    color: green;
+}
+
+/* Carousel */
+
+.carousel {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    margin-top: -50px;
+    position: relative;
+}
+
+.carousel .list .item {
+    position: absolute;
+    inset: 0 0 0 0;
+}
+
+.carousel .list .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(40%)
+}
+
+.carousel .list .item .content {
+    position: absolute;
+    top: 15%;
+    width: 1140px;
+    max-width: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-right: 24%;
+    box-sizing: border-box;
+    color: #fff;
+    text-shadow: 0 5px 10px #0004; 
+}
+
+.carousel .list .item .content .title {
+    font-family: 'Red October';
+    font-size: 70px;
+}
+
+.carousel .list .item .content .title span {
+    color: red;
+}
+
+.carousel .list .item .content .description {
+    font-size: 22px;
+    margin-top: 20px;
+}
+
+.content__link {
+    margin-top: 20px;
+}
+
+.content__link a {
+    font-family: 'Red October';
+    font-size: 30px;
+    margin-top: 20px;
+    border-bottom: 2px #fff solid;
+}
+
+/* Thumbnail */
+
+.thumbnail {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    width: max-content;
+    z-index: 100;
+    display: flex;
+    gap: 20px;
+}
+
+.thumbnail .item {
+    width: 180px;
+    height: 220px;
+    flex-shrink: 0;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; */
+    position: relative;
+}
+
+.thumbnail .item img {
+    width: 100%;
+    height: 100%;
+    /* margin-left: -70%; */
+    object-fit: cover;
+    filter: brightness(70%);
+}
+
+.thumbnail .item .content {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.thumbnail .item .content .title {
+    font-family: 'Red October';
+    font-size: 16px;
+}
+
+.thumbnail .item .content .title span {
+    color: red;
+}
+
+.arrows {
+    position: absolute;
+    top: 80%;
+    right: 52%;
+    width: 300px;
+    min-width: 30%;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.arrows button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #eee4;
+    border: none;
+    font-family: monospace;
+    color: white;
+    font-weight: bold;
+    font-size: large;
+    transition: .5s;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.arrows button:hover {
+    background-color: #eee;
+    color: #555;
+}
+
+.carousel .list .item:nth-child(1) {
+    z-index: 1;
+}
+
+.carousel .list .item:nth-child(1) .title,
+.carousel .list .item:nth-child(1) .description,
+.carousel .list .item:nth-child(1) .content__link {
+    transform: translateY(50px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent 0.5s 1s linear forwards;
+}
+
+@keyframes showContent {
+    to {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+    }
+}
+
+.carousel .list .item:nth-child(1) .title {
+    animation-delay: 1.2s;
+}
+
+.carousel .list .item:nth-child(1) .description {
+    animation-delay: 1.4s;
+}
+
+.carousel .list .item:nth-child(1) .content__link {
+    animation-delay: 1.6s;
+}
+
+/* effect next click */
+.carousel.next .list .item:nth-child(1) img {
+    width: 180px;
+    height: 220px;
+    position: absolute;
+    left: 50%;
+    bottom: 50px;
+    animation: showImage 0.5s linear 1 forwards;
+}
+
+@keyframes showImage {
+    to {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        bottom: 0;
+    }
+}
+
+.carousel.next .thumbnail .item:nth-last-child(1) {
+    width: 0;
+    overflow: hidden;
+    animation: showThumbnail .5s linear 1 forwards;
+}
+
+@keyframes showThumbnail {
+    to {
+        width: 180px;
+    }
+}
+
+.carousel.next .thumbnail {
+    transform: translateX(180px);
+    animation: transformThumbnail .5s linear 1 forwards;
+}
+
+@keyframes transformThumbnail {
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* effect prev click */
+.carousel.prev .list .item:nth-child(2) {
+    z-index: 2;
+}
+
+.carousel.prev .list .item:nth-child(2) img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    animation: outImage 0.5s linear 1 forwards;
+}
+
+@keyframes outImage {
+    to {
+        width: 180px;
+        height: 220px;
+        left: 50%;
+        bottom: 50px;
+    }
+}
+
+.carousel.prev .thumbnail .item:nth-child(1) {
+    width: 0;
+    overflow: hidden;
+    opacity: 0.5;
+    animation: showThumbnailCard 0.8s linear 1 forwards;
+}
+
+@keyframes showThumbnailCard {
+    to {
+        width: 180px;
+        opacity: 1;
+    }
+}
+
+.carousel.prev .list .item:nth-child(2) .title,
+.carousel.prev .list .item:nth-child(2) .description,
+.carousel.prev .list .item:nth-child(2) .content__link {
+    animation: contentOut 1.5s linear 1 forwards;
+}
+
+@keyframes contentOut {
+    to {
+        transform: translateX(-150px);
+        filter: blur(20px);
+        opacity: 0;
+    }
+}
+
+.carousel.next .arrows button,
+.carousel.prev .arrows button {
+    pointer-events: none;
+}
+
+.time {
+    width: 0%;
+    height: 5px;
+    background-color: red;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+}
+
+.carousel.next .time,
+.carousel.prev .time {
+    width: 100%;
+    animation: timeRunning 2s linear 1 forwards;
+}
+
+@keyframes timeRunning {
+    to {
+        width: 0;
+    }
+}
+
+@media screen and (max-width: 727px) {
+    .carousel .list .item .content {
+        top: 10%;
+    }
+    .carousel .list .item .content .title {
+        font-size: 50px;
+    }
+}
+
+@media screen and (max-width: 681px) {
+    .inflation-text, .key-rate, .inflation-content__text {
+        font-size: 20px;
+    }
+
+    .carousel .list .item .content {
+        padding-right: 0;
+    }
+
+    .carousel .list .item .content .title {
+        font-size: 30px;
+    }
+
+    .carousel .list .item .content .description {
+        font-size: 20px;
+    }
+
+    .arrows {
+        right: 40%;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 559px) {
+    .inflation-text, .key-rate, .inflation-content__text {
+        font-size: 18px;
+    }
+
+    .nav {
+        gap: 10px
+    }
+
+    .inflation {
+        gap: 5px
+    }
+
+    .arrows {
+        right: 30%;
+    }
+
+    .arrows button {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media screen and (max-width: 485px) {
+    .inflation-text, .key-rate, .inflation-content__text {
+        font-size: 16px;
+    }
+
+    .inflation-content__img {
+        height: 20px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .inflation-text, .key-rate, .inflation-content__text {
+        font-size: 14px;
+    }
+
+    .arrows {
+        right: 20%;
+    }
+}
