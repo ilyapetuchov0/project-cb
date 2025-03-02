@@ -155,7 +155,8 @@ a {
 .thumbnail .item .content {
     position: absolute;
     top: 10px;
-    left: 10px;
+    right: 10px;
+    text-align: right;
 }
 
 .thumbnail .item .content .title {
